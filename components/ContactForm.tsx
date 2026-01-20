@@ -175,195 +175,194 @@ export function ContactForm({ services }: ContactFormProps) {
             </div>
           </motion.div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
-            >
-              <div className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-3xl p-8 border border-white/20 shadow-[0_0_50px_rgba(236,72,153,0.2)]">
-                {result?.success ? (
-                  <div className="flex flex-col items-center justify-center py-20 px-8 text-center max-w-md mx-auto">
-                    <motion.div
-                      initial={{ scale: 0, opacity: 0 }}
-                      animate={{ scale: 1, opacity: 1 }}
-                      transition={{ duration: 0.6, delay: 0.2 }}
-                      className="absolute inset-0 bg-gradient-to-br from-green-500/20 via-emerald-500/10 to-teal-500/20 rounded-3xl blur-xl -z-10"
-                    />
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
+            <div className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-3xl p-8 border border-white/20 shadow-[0_0_50px_rgba(236,72,153,0.2)]">
+              {result?.success ? (
+                <div className="flex flex-col items-center justify-center py-12 sm:py-16 lg:py-20 px-4 sm:px-6 lg:px-8 text-center w-full mx-auto">
+                  <motion.div
+                    initial={{ scale: 0, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    transition={{ duration: 0.6, delay: 0.2 }}
+                    className="absolute inset-0 bg-gradient-to-br from-green-500/20 via-emerald-500/10 to-teal-500/20 rounded-3xl blur-xl -z-10"
+                  />
 
-                    <motion.div
-                      initial={{ scale: 0 }}
-                      animate={{ scale: 1 }}
-                      transition={{
-                        duration: 0.5,
-                        type: "spring",
-                        stiffness: 400,
-                      }}
-                      className="w-28 h-28 rounded-3xl bg-gradient-to-br from-green-500 via-emerald-500 to-teal-500 flex items-center justify-center shadow-2xl mb-8 border-4 border-white/20 hover:shadow-[0_0_40px_rgba(34,197,94,0.4)] transition-all duration-300 hover:scale-105"
-                    >
-                      <CheckCircle className="w-16 h-16 text-white drop-shadow-lg" />
-                    </motion.div>
-
-                    <motion.h3
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.6, delay: 0.3 }}
-                      className="text-4xl md:text-5xl font-black mb-6 leading-tight bg-gradient-to-r from-green-400 via-emerald-400 to-teal-400 bg-clip-text text-transparent drop-shadow-2xl"
-                    >
-                      Заявка отправлена!
-                    </motion.h3>
-
-                    <motion.p
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.6, delay: 0.4 }}
-                      className="text-xl md:text-2xl text-white/90 mb-8 max-w-sm leading-relaxed font-medium tracking-wide"
-                    >
-                      {result.message}
-                    </motion.p>
-
-                    <motion.div
-                      initial={{ scaleX: 0, opacity: 0 }}
-                      animate={{ scaleX: 1, opacity: 1 }}
-                      transition={{ duration: 0.8, delay: 0.5 }}
-                      className="w-24 h-1 bg-gradient-to-r from-green-400 to-emerald-500 rounded-full mb-8 shadow-lg"
-                    />
-
-                    <motion.div
-                      initial={{ scale: 0.8, opacity: 0 }}
-                      animate={{ scale: 1, opacity: 1 }}
-                      transition={{ duration: 0.5, delay: 0.6 }}
-                      className="text-green-400 text-lg font-bold tracking-wider"
-                    >
-                      Автозакрытие через 3...2...1...
-                    </motion.div>
-                  </div>
-                ) : (
-                  <form
-                    id="contact-form"
-                    action={handleSubmit}
-                    className="space-y-6"
+                  <motion.div
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    transition={{
+                      duration: 0.5,
+                      type: "spring",
+                      stiffness: 400,
+                    }}
+                    className="w-28 h-28 rounded-3xl bg-gradient-to-br from-green-500 via-emerald-500 to-teal-500 flex items-center justify-center shadow-2xl mb-8 border-4 border-white/20 hover:shadow-[0_0_40px_rgba(34,197,94,0.4)] transition-all duration-300 hover:scale-105"
                   >
-                    {result && !result.success && (
-                      <div className="p-4 bg-red-500/20 border border-red-500/50 rounded-xl flex items-start gap-3">
-                        <AlertCircle className="w-5 h-5 text-red-400 flex-shrink-0 mt-0.5" />
-                        <p className="text-red-400 text-sm font-medium">
-                          {result.message}
-                        </p>
-                      </div>
-                    )}
+                    <CheckCircle className="w-16 h-16 text-white drop-shadow-lg" />
+                  </motion.div>
 
-                    <div>
-                      <label
-                        htmlFor="name"
-                        className="block text-sm font-bold text-white mb-2"
-                      >
-                        Ваше имя *
-                      </label>
-                      <input
-                        type="text"
-                        id="name"
-                        name="name"
-                        required
-                        disabled={isPending}
-                        className="w-full px-5 py-4 rounded-xl bg-white/5 border border-white/20 text-white placeholder-white/40 focus:ring-2 focus:ring-pink-500 focus:border-transparent transition-all outline-none backdrop-blur-xl disabled:opacity-50"
-                        placeholder="Анастасия"
-                      />
+                  <motion.h3
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: 0.3 }}
+                    className="text-4xl md:text-5xl font-black mb-6 leading-tight bg-gradient-to-r from-green-400 via-emerald-400 to-teal-400 bg-clip-text text-transparent drop-shadow-2xl"
+                  >
+                    Заявка отправлена!
+                  </motion.h3>
+
+                  <motion.p
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: 0.4 }}
+                    className="text-xl md:text-2xl text-white/90 mb-8 max-w-sm leading-relaxed font-medium tracking-wide"
+                  >
+                    {result.message}
+                  </motion.p>
+
+                  <motion.div
+                    initial={{ scaleX: 0, opacity: 0 }}
+                    animate={{ scaleX: 1, opacity: 1 }}
+                    transition={{ duration: 0.8, delay: 0.5 }}
+                    className="w-24 h-1 bg-gradient-to-r from-green-400 to-emerald-500 rounded-full mb-8 shadow-lg"
+                  />
+
+                  <motion.div
+                    initial={{ scale: 0.8, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    transition={{ duration: 0.5, delay: 0.6 }}
+                    className="text-green-400 text-lg font-bold tracking-wider"
+                  >
+                    Автозакрытие через 3...2...1...
+                  </motion.div>
+                </div>
+              ) : (
+                <form
+                  id="contact-form"
+                  action={handleSubmit}
+                  className="space-y-6"
+                >
+                  {result && !result.success && (
+                    <div className="p-4 bg-red-500/20 border border-red-500/50 rounded-xl flex items-start gap-3">
+                      <AlertCircle className="w-5 h-5 text-red-400 flex-shrink-0 mt-0.5" />
+                      <p className="text-red-400 text-sm font-medium">
+                        {result.message}
+                      </p>
                     </div>
+                  )}
 
-                    <div>
-                      <label
-                        htmlFor="phone"
-                        className="block text-sm font-bold text-white mb-2"
-                      >
-                        Телефон *
-                      </label>
-                      <input
-                        type="tel"
-                        id="phone"
-                        name="phone"
-                        required
-                        disabled={isPending}
-                        className="w-full px-5 py-4 rounded-xl bg-white/5 border border-white/20 text-white placeholder-white/40 focus:ring-2 focus:ring-pink-500 focus:border-transparent transition-all outline-none backdrop-blur-xl disabled:opacity-50"
-                        placeholder="+79276136513"
-                      />
-                    </div>
-
-                    <div>
-                      <label
-                        htmlFor="service"
-                        className="block text-sm font-bold text-white mb-2"
-                      >
-                        Выберите услугу
-                      </label>
-                      <select
-                        id="service"
-                        name="service"
-                        disabled={isPending}
-                        className="w-full px-5 py-4 rounded-xl bg-white/5 border border-white/20 text-white focus:ring-2 focus:ring-pink-500 focus:border-transparent transition-all outline-none backdrop-blur-xl disabled:opacity-50"
-                      >
-                        <option value="">Выберите услугу</option>
-                        {services.map((service) => (
-                          <option key={service.id} value={service.title}>
-                            {service.title}
-                          </option>
-                        ))}
-                      </select>
-                    </div>
-
-                    <div>
-                      <label
-                        htmlFor="date"
-                        className="block text-sm font-bold text-white mb-2"
-                      >
-                        Желаемая дата
-                      </label>
-                      <input
-                        type="date"
-                        id="date"
-                        name="date"
-                        disabled={isPending}
-                        className="w-full px-5 py-4 rounded-xl bg-white/5 border border-white/20 text-white placeholder-white/40 focus:ring-2 focus:ring-pink-500 focus:border-transparent transition-all outline-none backdrop-blur-xl disabled:opacity-50
-  appearance-none
-  [&::-webkit-calendar-picker-indicator]:hidden
-  [&::-webkit-calendar-picker-indicator]:bg-transparent
-  [&::-webkit-inner-spin-button]:appearance-none
-  [&::-webkit-clear-button]:hidden
-  [&::-webkit-search-decoration]:hidden"
-                      />
-                    </div>
-
-                    <div>
-                      <label
-                        htmlFor="message"
-                        className="block text-sm font-bold text-white mb-2"
-                      >
-                        Комментарий
-                      </label>
-                      <textarea
-                        id="message"
-                        name="message"
-                        rows={4}
-                        disabled={isPending}
-                        className="w-full px-5 py-4 rounded-xl bg-white/5 border border-white/20 text-white placeholder-white/40 focus:ring-2 focus:ring-pink-500 focus:border-transparent transition-all outline-none resize-none backdrop-blur-xl disabled:opacity-50"
-                        placeholder="Напишите пожелания по дизайну или задайте вопрос..."
-                      />
-                    </div>
-
-                    <button
-                      type="submit"
-                      disabled={isPending}
-                      className="w-full px-8 py-5 bg-gradient-to-r from-purple-500 via-pink-500 to-orange-500 text-white text-lg rounded-xl font-bold hover:shadow-[0_0_40px_rgba(236,72,153,0.6)] transition-all duration-300 hover:scale-105 flex items-center justify-center gap-3 disabled:opacity-50 disabled:cursor-not-allowed"
+                  <div>
+                    <label
+                      htmlFor="name"
+                      className="block text-sm font-bold text-white mb-2"
                     >
-                      <Send className="w-6 h-6" />
-                      {isPending ? "Отправка..." : "Отправить заявку"}
-                    </button>
-                  </form>
-                )}
-              </div>
-            </motion.div>
-          </div>
+                      Ваше имя *
+                    </label>
+                    <input
+                      type="text"
+                      id="name"
+                      name="name"
+                      required
+                      disabled={isPending}
+                      className="w-full px-5 py-4 rounded-xl bg-white/5 border border-white/20 text-white placeholder-white/40 focus:ring-2 focus:ring-pink-500 focus:border-transparent transition-all outline-none backdrop-blur-xl disabled:opacity-50"
+                      placeholder="Анастасия"
+                    />
+                  </div>
+
+                  <div>
+                    <label
+                      htmlFor="phone"
+                      className="block text-sm font-bold text-white mb-2"
+                    >
+                      Телефон *
+                    </label>
+                    <input
+                      type="tel"
+                      id="phone"
+                      name="phone"
+                      required
+                      disabled={isPending}
+                      className="w-full px-5 py-4 rounded-xl bg-white/5 border border-white/20 text-white placeholder-white/40 focus:ring-2 focus:ring-pink-500 focus:border-transparent transition-all outline-none backdrop-blur-xl disabled:opacity-50"
+                      placeholder="+79276136513"
+                    />
+                  </div>
+
+                  <div>
+                    <label
+                      htmlFor="service"
+                      className="block text-sm font-bold text-white mb-2"
+                    >
+                      Выберите услугу
+                    </label>
+                    <select
+                      id="service"
+                      name="service"
+                      disabled={isPending}
+                      className="w-full px-5 py-4 rounded-xl bg-white/5 border border-white/20 text-white focus:ring-2 focus:ring-pink-500 focus:border-transparent transition-all outline-none backdrop-blur-xl disabled:opacity-50"
+                    >
+                      <option value="">Выберите услугу</option>
+                      {services.map((service) => (
+                        <option key={service.id} value={service.title}>
+                          {service.title}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+
+                  <div>
+                    <label
+                      htmlFor="date"
+                      className="block text-sm font-bold text-white mb-2"
+                    >
+                      Желаемая дата
+                    </label>
+                    <input
+                      type="date"
+                      id="date"
+                      name="date"
+                      disabled={isPending}
+                      className="w-full px-5 py-4 rounded-xl bg-white/10 border border-white/20 text-white placeholder-white/40 focus:ring-2 focus:ring-pink-500 focus:border-transparent transition-all outline-none backdrop-blur-xl disabled:opacity-50
+  [&::-webkit-calendar-picker-indicator]:bg-gradient-to-r from-purple-500 to-pink-500
+  [&::-webkit-calendar-picker-indicator]:p-2
+  [&::-webkit-calendar-picker-indicator]:rounded-lg
+  [&::-webkit-calendar-picker-indicator]:cursor-pointer
+  [&::-webkit-calendar-picker-indicator]:hover:bg-white/20
+  [&::-webkit-inner-spin-button]:appearance-none
+  [&::-webkit-clear-button]:-webkit-appearance: none"
+                    />
+                  </div>
+
+                  <div>
+                    <label
+                      htmlFor="message"
+                      className="block text-sm font-bold text-white mb-2"
+                    >
+                      Комментарий
+                    </label>
+                    <textarea
+                      id="message"
+                      name="message"
+                      rows={4}
+                      disabled={isPending}
+                      className="w-full px-5 py-4 rounded-xl bg-white/5 border border-white/20 text-white placeholder-white/40 focus:ring-2 focus:ring-pink-500 focus:border-transparent transition-all outline-none resize-none backdrop-blur-xl disabled:opacity-50"
+                      placeholder="Напишите пожелания по дизайну или задайте вопрос..."
+                    />
+                  </div>
+
+                  <button
+                    type="submit"
+                    disabled={isPending}
+                    className="w-full px-8 py-5 bg-gradient-to-r from-purple-500 via-pink-500 to-orange-500 text-white text-lg rounded-xl font-bold hover:shadow-[0_0_40px_rgba(236,72,153,0.6)] transition-all duration-300 hover:scale-105 flex items-center justify-center gap-3 disabled:opacity-50 disabled:cursor-not-allowed"
+                  >
+                    <Send className="w-6 h-6" />
+                    {isPending ? "Отправка..." : "Отправить заявку"}
+                  </button>
+                </form>
+              )}
+            </div>
+          </motion.div>
         </div>
       </div>
     </section>
