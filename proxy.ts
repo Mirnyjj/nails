@@ -1,10 +1,10 @@
+// app/proxy.ts
 import { createServerClient } from "@supabase/ssr";
-import { NextResponse, type NextRequest } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
-export async function middleware(request: NextRequest) {
-  // Игнорируй RSC и статические файлы
+export async function proxy(request: NextRequest) {
   if (
-    request.headers.get("x-middleware-ignore") ||
+    request.headers.get("x-proxy-ignore") ||
     request.nextUrl.searchParams.has("_rsc") ||
     request.nextUrl.pathname.includes(".")
   ) {
@@ -25,22 +25,20 @@ export async function middleware(request: NextRequest) {
       get(name: string) {
         return request.cookies.get(name)?.value;
       },
-      set(name: string, value: string, options?: any) {
-        response.cookies.set(name, value, options);
+      set(name: string, value: string) {
+        response.cookies.set(name, value);
       },
-      remove(name: string, options?: any) {
-        response.cookies.set(name, "", { ...options, maxAge: 0 });
+      remove(name: string) {
+        response.cookies.set(name, "");
       },
     },
   });
 
-  // Защита /admin/*
   if (request.nextUrl.pathname.startsWith("/admin")) {
     const {
       data: { user },
     } = await supabase.auth.getUser();
 
-    // Если на login странице
     if (request.nextUrl.pathname === "/admin/login") {
       if (user) {
         return NextResponse.redirect(new URL("/admin/dashboard", request.url));
@@ -48,12 +46,10 @@ export async function middleware(request: NextRequest) {
       return response;
     }
 
-    // Все остальные /admin/* требуют авторизации
     if (!user) {
       return NextResponse.redirect(new URL("/admin/login", request.url));
     }
 
-    // Проверка роли admin
     const { data: userData } = await supabase
       .from("users")
       .select("role")
