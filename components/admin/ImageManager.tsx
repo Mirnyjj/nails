@@ -155,22 +155,24 @@ export default function ImagesManager() {
   }
 
   return (
-    <div className="bg-gradient-to-br from-white/5 to-white/[0.02] backdrop-blur-xl rounded-3xl p-8 border border-white/10">
-      <div className="flex items-center justify-between mb-8">
-        <h2 className="text-2xl font-bold text-white flex items-center gap-3">
-          <ImageIcon className="w-7 h-7" />
+    <div className="bg-gradient-to-br from-white/5 to-white/[0.02] backdrop-blur-xl rounded-3xl p-4 sm:p-6 lg:p-8 border border-white/10">
+      {/* Header */}
+      <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between mb-6 sm:mb-8 gap-4 lg:gap-0">
+        <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-white flex items-center gap-2 sm:gap-3">
+          <ImageIcon className="w-6 h-6 sm:w-7 sm:h-7" />
           Изображения ({images.length})
         </h2>
 
-        <div className="flex flex-col sm:flex-row gap-4">
-          <div className="flex flex-col gap-3 bg-white/5 p-4 rounded-2xl">
+        {/* Upload Form */}
+        <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 w-full lg:w-auto lg:flex-shrink-0">
+          <div className="flex flex-col gap-3 bg-white/5 p-3 sm:p-4 rounded-2xl w-full sm:w-auto">
             <input
               placeholder="Alt текст"
               value={newImage.alt_text}
               onChange={(e) =>
                 setNewImage({ ...newImage, alt_text: e.target.value })
               }
-              className="px-4 py-2 bg-white/10 rounded-xl text-white w-full sm:w-48"
+              className="px-3 py-2 sm:px-4 sm:py-2 bg-white/10 rounded-xl text-white text-base sm:text-lg w-full sm:w-44 lg:w-48 placeholder-white/50 focus:outline-none focus:border-pink-500/50"
             />
 
             <select
@@ -178,7 +180,7 @@ export default function ImagesManager() {
               onChange={(e) =>
                 setNewImage({ ...newImage, section: e.target.value })
               }
-              className="px-4 py-2 bg-white/10 rounded-xl text-gray-500 w-full sm:w-48"
+              className="px-3 py-2 sm:px-4 sm:py-2 bg-white/10 rounded-xl text-gray-400 sm:text-gray-500 w-full sm:w-44 lg:w-48 text-base sm:text-lg focus:outline-none focus:border-pink-500/50"
             >
               <option value="">Секция</option>
               <option value="hero">Эксклюзив</option>
@@ -187,7 +189,7 @@ export default function ImagesManager() {
               <option value="general">Общее</option>
             </select>
 
-            <div className="flex gap-2">
+            <div className="flex flex-col sm:flex-row gap-2">
               <input
                 ref={fileInputRef}
                 type="file"
@@ -198,79 +200,94 @@ export default function ImagesManager() {
               />
               <label
                 htmlFor="image-upload"
-                className="flex-1 px-4 py-2 bg-white/10 hover:bg-white/20 rounded-xl text-white text-sm flex items-center gap-2 cursor-pointer transition-all"
+                className="flex-1 px-3 py-2 sm:px-4 sm:py-2 bg-white/10 hover:bg-white/20 rounded-xl text-white text-xs sm:text-sm flex items-center justify-center gap-2 cursor-pointer transition-all border border-white/20"
               >
-                <Upload className="w-4 h-4" />
+                <Upload className="w-3 h-3 sm:w-4 sm:h-4 flex-shrink-0" />
                 Выбрать файл
               </label>
 
               <button
                 onClick={createImage}
                 disabled={uploading || !newImage.alt_text || !newImage.section}
-                className="px-6 py-2 bg-gradient-to-r from-purple-500 via-pink-500 to-orange-500 text-white rounded-xl font-bold flex items-center gap-2 disabled:opacity-50"
+                className="px-4 py-2 sm:px-6 sm:py-2 bg-gradient-to-r from-purple-500 via-pink-500 to-orange-500 text-white rounded-xl font-bold text-xs sm:text-sm flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed flex-shrink-0"
               >
-                <Plus className="w-4 h-4" />
+                <Plus className="w-3 h-3 sm:w-4 sm:h-4" />
                 {uploading ? "Загрузка..." : "Добавить"}
               </button>
             </div>
           </div>
 
+          {/* Preview */}
           {previewUrl && (
-            <div className="flex items-center gap-3">
-              <Image
-                src={previewUrl}
-                alt="Предпросмотр"
-                className="w-16 h-16 object-cover rounded-xl border-2 border-white/20"
-              />
+            <div className="flex items-center gap-2 sm:gap-3 self-start">
+              <div className="relative w-12 h-12 sm:w-16 sm:h-16 rounded-xl border-2 border-white/20 overflow-hidden flex-shrink-0">
+                <Image
+                  src={previewUrl!}
+                  alt="Предпросмотр"
+                  fill
+                  className="object-cover"
+                />
+              </div>
               <button
                 onClick={() => {
                   setPreviewUrl(null);
                   if (fileInputRef.current) fileInputRef.current.value = "";
                 }}
-                className="text-red-400 hover:text-red-300 p-1 -m-1 rounded-full hover:bg-red-500/20"
+                className="text-red-400 hover:text-red-300 p-1 sm:p-2 -m-1 sm:-m-2 rounded-full hover:bg-red-500/20 transition-all flex-shrink-0"
               >
-                <Trash2 className="w-4 h-4" />
+                <Trash2 className="w-3 h-3 sm:w-4 sm:h-4" />
               </button>
             </div>
           )}
         </div>
       </div>
 
-      <div className="space-y-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-4 lg:gap-6 space-y-0">
         {images.map((image) => (
           <div
             key={image.id}
-            className="bg-white/5 hover:bg-white/10 rounded-2xl p-6 flex gap-4 transition-all"
+            className="bg-white/5 hover:bg-white/10 rounded-2xl p-3 sm:p-4 lg:p-6 flex flex-col gap-3 sm:gap-4 transition-all group"
           >
-            <Image
-              src={image.image_url}
-              alt={image.alt_text}
-              className="w-24 h-24 object-cover rounded-xl border-2 border-white/20"
-              onError={(e) => {
-                (e.target as HTMLImageElement).src = "/placeholder-image.jpg";
-              }}
-            />
+            <div className="relative w-full h-32 sm:h-40 lg:h-48 rounded-xl border-2 border-white/20 overflow-hidden flex-shrink-0">
+              <Image
+                src={image.image_url}
+                alt={image.alt_text}
+                fill
+                className="object-cover group-hover:scale-105 transition-transform duration-300"
+                onError={(e) => {
+                  (e.target as HTMLImageElement).src = "/placeholder-image.jpg";
+                }}
+              />
+            </div>
 
-            <div className="flex-1 min-w-0">
-              <h3 className="text-white font-bold truncate pr-2">
+            <div className="flex-1 min-h-0">
+              <h3 className="text-white font-bold text-sm sm:text-base lg:text-lg truncate line-clamp-2 leading-tight">
                 {image.alt_text}
               </h3>
-              <p className="text-white/60 text-sm truncate">{image.section}</p>
-              <p className="text-xs text-white/40 mt-1">
+              <p className="text-white/60 text-xs sm:text-sm truncate bg-black/20 px-2 py-1 rounded-lg inline-block mt-1">
+                {image.section}
+              </p>
+              <p className="text-xs sm:text-sm text-white/40 mt-2">
                 #{String(image.order ?? 0).padStart(2, "0")}
               </p>
             </div>
 
             <button
               onClick={() => deleteImage(image)}
-              className="p-2 text-red-400 hover:text-red-300 hover:bg-red-500/20 rounded-xl transition-all"
+              className="p-2 sm:p-3 text-red-400 hover:text-red-300 hover:bg-red-500/20 rounded-xl transition-all self-end mt-auto"
               title="Удалить"
             >
-              <Trash2 className="w-5 h-5" />
+              <Trash2 className="w-4 h-4 sm:w-5 sm:h-5" />
             </button>
           </div>
         ))}
       </div>
+
+      {images.length === 0 && (
+        <div className="col-span-full text-center py-12 sm:py-16 text-white/50 text-sm sm:text-base">
+          Нет изображений. Добавьте первое!
+        </div>
+      )}
     </div>
   );
 }

@@ -301,7 +301,7 @@ export function SettingsManager() {
               onChange={(e) =>
                 setFormData({ ...formData, hero_title: e.target.value })
               }
-              className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-white/50 focus:outline-none focus:border-pink-500 transition-colors"
+              className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white text-base sm:text-lg placeholder-white/50 focus:outline-none focus:border-pink-500 transition-colors"
               placeholder="Введите заголовок"
             />
           </div>
@@ -316,7 +316,7 @@ export function SettingsManager() {
                 setFormData({ ...formData, hero_subtitle: e.target.value })
               }
               rows={4}
-              className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-white/50 focus:outline-none focus:border-pink-500 transition-colors resize-none"
+              className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white text-base sm:text-lg placeholder-white/50 focus:outline-none focus:border-pink-500 transition-colors resize-none"
               placeholder="Введите подзаголовок"
             />
           </div>
@@ -362,12 +362,15 @@ export function SettingsManager() {
             </div>
 
             {(imagePreview || formData.background_image_url) && (
-              <div className="relative">
-                <NextImage
-                  src={imagePreview || formData.background_image_url!}
-                  alt="Фон"
-                  className="w-full max-w-sm h-32 object-cover rounded-xl border-2 border-white/20"
-                />
+              <div className="relative max-w-sm mx-auto">
+                <div className="relative w-full h-32 rounded-xl border-2 border-white/20 overflow-hidden">
+                  <NextImage
+                    src={imagePreview || formData.background_image_url!}
+                    alt="Фон"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
                 {formData.background_image_url && (
                   <button
                     onClick={deleteBackgroundImage}

@@ -314,7 +314,7 @@ export function ContactForm({ services }: ContactFormProps) {
                   <div>
                     <label
                       htmlFor="date"
-                      className="block text-sm font-bold text-white mb-2"
+                      className="block text-base font-bold text-white mb-2"
                     >
                       Желаемая дата
                     </label>
@@ -323,14 +323,7 @@ export function ContactForm({ services }: ContactFormProps) {
                       id="date"
                       name="date"
                       disabled={isPending}
-                      className="w-full px-5 py-4 rounded-xl bg-white/10 border border-white/20 text-white placeholder-white/40 focus:ring-2 focus:ring-pink-500 focus:border-transparent transition-all outline-none backdrop-blur-xl disabled:opacity-50
-  [&::-webkit-calendar-picker-indicator]:bg-gradient-to-r from-purple-500 to-pink-500
-  [&::-webkit-calendar-picker-indicator]:p-2
-  [&::-webkit-calendar-picker-indicator]:rounded-lg
-  [&::-webkit-calendar-picker-indicator]:cursor-pointer
-  [&::-webkit-calendar-picker-indicator]:hover:bg-white/20
-  [&::-webkit-inner-spin-button]:appearance-none
-  [&::-webkit-clear-button]:-webkit-appearance: none"
+                      className="w-full max-w-full block px-4 py-3 bg-white/5 border border-white/20 rounded-xl text-base text-white placeholder-white/40 font-normal focus:ring-2 focus:ring-pink-500 focus:border-transparent transition-all outline-none backdrop-blur-sm disabled:opacity-50 appearance-none box-border [&::-webkit-calendar-picker-indicator]:w-6 [&::-webkit-calendar-picker-indicator]:h-6 [&::-webkit-calendar-picker-indicator]:mx-1 [&::-webkit-calendar-picker-indicator]:p-0 [&::-webkit-calendar-picker-indicator]:rounded-full [&::-webkit-calendar-picker-indicator]:bg-gradient-to-r from-purple-500 to-pink-500 [&::-webkit-calendar-picker-indicator]:border [&::-webkit-calendar-picker-indicator]:border-white/30 [&::-webkit-clear-button\\]:-webkit-appearance-none [&::-webkit-clear-button\\]:display-none"
                     />
                   </div>
 
