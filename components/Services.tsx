@@ -98,7 +98,7 @@ export function Services({ services }: ServicesProps) {
                       {service.duration_hours === 1 ? "час" : "часа"}
                     </div>
                     <div className="text-3xl font-black bg-gradient-to-r from-pink-400 to-orange-400 bg-clip-text text-transparent">
-                      {service.price}
+                      {service.price}₽
                     </div>
                   </div>
                 </div>
