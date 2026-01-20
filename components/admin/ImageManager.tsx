@@ -4,6 +4,7 @@ import { useEffect, useState, useRef } from "react";
 import { createClient } from "@/lib/supabase/client";
 import { Trash2, Plus, Image as ImageIcon, Upload } from "lucide-react";
 import { Database } from "@/lib/supabase/database.types";
+import Image from "next/image";
 
 type ImageRow = Database["public"]["Tables"]["images"]["Row"];
 
@@ -216,7 +217,7 @@ export default function ImagesManager() {
 
           {previewUrl && (
             <div className="flex items-center gap-3">
-              <img
+              <Image
                 src={previewUrl}
                 alt="Предпросмотр"
                 className="w-16 h-16 object-cover rounded-xl border-2 border-white/20"
@@ -241,7 +242,7 @@ export default function ImagesManager() {
             key={image.id}
             className="bg-white/5 hover:bg-white/10 rounded-2xl p-6 flex gap-4 transition-all"
           >
-            <img
+            <Image
               src={image.image_url}
               alt={image.alt_text}
               className="w-24 h-24 object-cover rounded-xl border-2 border-white/20"

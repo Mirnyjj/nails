@@ -11,10 +11,6 @@ import {
   Calendar,
 } from "lucide-react";
 import type { Service } from "@/lib/types";
-import {
-  submitContactForm,
-  type ContactActionResult,
-} from "@/app/actions/contact";
 import { sendAppointmentMessage } from "@/telegram";
 
 interface ContactFormProps {

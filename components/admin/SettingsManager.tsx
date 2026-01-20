@@ -4,6 +4,7 @@ import { useEffect, useState, useRef } from "react";
 import { createClient } from "@/lib/supabase/client";
 import { Save, Loader2, Upload, Trash2 } from "lucide-react";
 import { Database } from "@/lib/supabase/database.types";
+import NextImage from "next/image";
 
 type SiteSettings = Database["public"]["Tables"]["site_settings"]["Row"];
 
@@ -362,7 +363,7 @@ export function SettingsManager() {
 
             {(imagePreview || formData.background_image_url) && (
               <div className="relative">
-                <img
+                <NextImage
                   src={imagePreview || formData.background_image_url!}
                   alt="Фон"
                   className="w-full max-w-sm h-32 object-cover rounded-xl border-2 border-white/20"
