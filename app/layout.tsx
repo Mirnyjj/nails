@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { ErrorBoundary } from "@/components/ErrorBoundary";
 import { getSiteSettings } from "@/lib/db";
+import { CookieConsent } from "@/components/CookieConsent";
 
 const inter = Inter({
   subsets: ["latin", "cyrillic"],
@@ -76,7 +77,7 @@ export async function generateMetadata(): Promise<Metadata> {
     },
 
     verification: {
-      yandex: process.env.YANDEX_VERIFICATION_CODE || "",
+      yandex: 106364517,
     },
 
     manifest: "/manifest.json",
@@ -129,21 +130,6 @@ export default async function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
 
-        {process.env.NEXT_PUBLIC_YM_ID && (
-          <script
-            dangerouslySetInnerHTML={{
-              __html: `
-                (function(m,e,t,r,i,k,a){
-                  m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-                  m[i].l=1*new Date();
-                  k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
-                })(window, document,'script','https://mc.yandex.ru/metrika/tag.js','ym');
-                ym(${process.env.NEXT_PUBLIC_YM_ID},'init',{ssr:true,webvisor:true,clickmap:true});
-              `,
-            }}
-          />
-        )}
-
         <meta
           name="viewport"
           content="width=device-width, initial-scale=1, maximum-scale=5"
@@ -175,18 +161,75 @@ export default async function RootLayout({
           <ErrorBoundary>{children}</ErrorBoundary>
         </div>
 
-        {process.env.NEXT_PUBLIC_YM_ID && (
-          <noscript>
-            <div>
-              <img
-                src={`https://mc.yandex.ru/watch/${process.env.NEXT_PUBLIC_YM_ID}`}
-                style={{ position: "absolute", left: "-9999px" }}
-                alt=""
-              />
-            </div>
-          </noscript>
-        )}
+        <CookieConsent />
       </body>
     </html>
   );
 }
+
+//  <html lang="ru" className="h-full">
+//       <head>
+//         <script
+//           type="application/ld+json"
+//           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+//         />
+
+//         {process.env.NEXT_PUBLIC_YM_ID && (
+//           <script
+//             dangerouslySetInnerHTML={{
+//               __html: `
+//                 (function(m,e,t,r,i,k,a){
+//                   m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+//                   m[i].l=1*new Date();
+//                   k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+//                 })(window, document,'script','https://mc.yandex.ru/metrika/tag.js','ym');
+//                 ym(${process.env.NEXT_PUBLIC_YM_ID},'init',{ssr:true,webvisor:true,clickmap:true});
+//               `,
+//             }}
+//           />
+//         )}
+
+//         <meta
+//           name="viewport"
+//           content="width=device-width, initial-scale=1, maximum-scale=5"
+//         />
+//         <meta name="theme-color" content="#000000" />
+//         <link rel="manifest" href="/manifest.json" />
+//       </head>
+
+//       <body
+//         className={`${inter.variable} ${inter.className} h-full antialiased font-sans`}
+//       >
+//         <div
+//           className="fixed inset-0 z-[-2] bg-no-repeat"
+//           style={{
+//             backgroundImage: settings?.background_gif_url
+//               ? `url(${settings.background_gif_url})`
+//               : "none",
+//             backgroundSize: "cover",
+//             backgroundPosition: "center",
+//             backgroundRepeat: "no-repeat",
+//             backgroundAttachment: "fixed",
+//             backgroundColor: "#111",
+//           }}
+//         />
+
+//         <div className="fixed inset-0 z-[-1] bg-black/50" />
+
+//         <div className="relative z-0 min-h-screen">
+//           <ErrorBoundary>{children}</ErrorBoundary>
+//         </div>
+
+//         {process.env.NEXT_PUBLIC_YM_ID && (
+//           <noscript>
+//             <div>
+//               <img
+//                 src={`https://mc.yandex.ru/watch/${process.env.NEXT_PUBLIC_YM_ID}`}
+//                 style={{ position: "absolute", left: "-9999px" }}
+//                 alt=""
+//               />
+//             </div>
+//           </noscript>
+//         )}
+//       </body>
+//     </html>

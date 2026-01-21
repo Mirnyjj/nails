@@ -248,6 +248,7 @@ export function ServicesManager() {
                     setFormData({ ...formData, title: e.target.value })
                   }
                   className="px-3 py-2 sm:px-4 sm:py-3 rounded-lg bg-white/5 border border-white/20 text-white text-base sm:text-lg w-full focus:outline-none focus:border-pink-500/50 transition-all"
+                  placeholder="Название"
                 />
                 <input
                   type="text"
@@ -256,6 +257,7 @@ export function ServicesManager() {
                     setFormData({ ...formData, price: e.target.value })
                   }
                   className="px-3 py-2 sm:px-4 sm:py-3 rounded-lg bg-white/5 border border-white/20 text-white text-base sm:text-lg w-full focus:outline-none focus:border-pink-500/50 transition-all"
+                  placeholder="Цена"
                 />
                 <textarea
                   value={formData.description}
@@ -264,7 +266,44 @@ export function ServicesManager() {
                   }
                   className="px-3 py-2 sm:px-4 sm:py-3 rounded-lg bg-white/5 border border-white/20 text-white text-base sm:text-lg w-full sm:col-span-2 focus:outline-none focus:border-pink-500/50 transition-all resize-none"
                   rows={2}
+                  placeholder="Описание"
                 />
+                <input
+                  type="number"
+                  step="0.5"
+                  value={formData.duration_hours}
+                  onChange={(e) =>
+                    setFormData({
+                      ...formData,
+                      duration_hours: parseFloat(e.target.value) || 0,
+                    })
+                  }
+                  className="px-3 py-2 sm:px-4 sm:py-3 rounded-lg bg-white/5 border border-white/20 text-white text-base sm:text-lg w-full focus:outline-none focus:border-pink-500/50 transition-all"
+                  placeholder="Длительность (часы)"
+                />
+                <input
+                  type="number"
+                  value={formData.order}
+                  onChange={(e) =>
+                    setFormData({
+                      ...formData,
+                      order: parseInt(e.target.value) || 0,
+                    })
+                  }
+                  className="px-3 py-2 sm:px-4 sm:py-3 rounded-lg bg-white/5 border border-white/20 text-white text-base sm:text-lg w-full focus:outline-none focus:border-pink-500/50 transition-all"
+                  placeholder="Порядок"
+                />
+                <label className="flex items-center gap-2 text-base sm:text-lg text-white sm:col-span-2 mt-2">
+                  <input
+                    type="checkbox"
+                    checked={formData.is_active}
+                    onChange={(e) =>
+                      setFormData({ ...formData, is_active: e.target.checked })
+                    }
+                    className="w-4 h-4 rounded border-white/30 bg-white/10 focus:ring-pink-500 text-pink-500"
+                  />
+                  Активна
+                </label>
                 <div className="flex gap-2 sm:gap-3 pt-3 sm:pt-4 border-t border-white/10 sm:col-span-2">
                   <button
                     onClick={() => handleUpdate(service.id)}

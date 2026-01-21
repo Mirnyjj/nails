@@ -49,7 +49,7 @@ export function Services({ services }: ServicesProps) {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 [&>*]:h-full">
           {services.map((service, index) => {
             const isPopular = popularIndices.includes(index);
             const gradientClasses = [
@@ -69,7 +69,7 @@ export function Services({ services }: ServicesProps) {
                 className="group relative"
               >
                 <div
-                  className={`relative bg-gradient-to-br ${gradient} backdrop-blur-xl rounded-3xl p-6 border ${
+                  className={`relative bg-gradient-to-br ${gradient} backdrop-blur-xl rounded-3xl p-6 border h-full ${
                     isPopular
                       ? "border-pink-500/50 shadow-[0_0_30px_rgba(236,72,153,0.3)]"
                       : "border-white/10"

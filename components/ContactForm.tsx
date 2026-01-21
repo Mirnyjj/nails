@@ -23,6 +23,7 @@ export function ContactForm({ services }: ContactFormProps) {
     message: string;
   } | null>(null);
   const [isPending, startTransition] = useTransition();
+  const [consentAgreed, setConsentAgreed] = useState(false);
 
   const handleSubmit = async (formData: FormData) => {
     startTransition(async () => {
@@ -344,10 +345,37 @@ export function ContactForm({ services }: ContactFormProps) {
                     />
                   </div>
 
+                  <div className="flex items-start gap-3 p-4 bg-white/5 backdrop-blur-xl rounded-xl border border-white/10">
+                    <label className="flex items-start gap-3 cursor-pointer w-full group">
+                      <input
+                        type="checkbox"
+                        id="consent"
+                        name="consent"
+                        checked={consentAgreed}
+                        onChange={(e) => setConsentAgreed(e.target.checked)}
+                        disabled={isPending}
+                        className="w-5 h-5 mt-0.5 text-pink-500 bg-white/10 border-2 border-white/30 rounded focus:ring-pink-500 focus:ring-2 focus:border-transparent transition-all duration-200 accent-pink-500 group-hover:border-pink-400/50 disabled:opacity-50"
+                        required
+                      />
+                      <span className="text-sm text-white/80 leading-relaxed group-hover:text-white transition-colors">
+                        Согласен(-на) на обработку персональных данных и
+                        политику конфиденциальности.
+                        <a
+                          href="/privacy"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-pink-400 hover:text-pink-300 underline decoration-pink-400/50 font-medium transition-all duration-200"
+                        >
+                          Ознакомиться →
+                        </a>
+                      </span>
+                    </label>
+                  </div>
+
                   <button
                     type="submit"
-                    disabled={isPending}
-                    className="w-full px-8 py-5 bg-gradient-to-r from-purple-500 via-pink-500 to-orange-500 text-white text-lg rounded-xl font-bold hover:shadow-[0_0_40px_rgba(236,72,153,0.6)] transition-all duration-300 hover:scale-105 flex items-center justify-center gap-3 disabled:opacity-50 disabled:cursor-not-allowed"
+                    disabled={isPending || !consentAgreed}
+                    className="w-full px-8 py-5 bg-gradient-to-r from-purple-500 via-pink-500 to-orange-500 text-white text-lg rounded-xl font-bold hover:shadow-[0_0_40px_rgba(236,72,153,0.6)] transition-all duration-300 hover:scale-105 flex items-center justify-center gap-3 disabled:opacity-50 disabled:cursor-not-allowed disabled:bg-gray-500/30"
                   >
                     <Send className="w-6 h-6" />
                     {isPending ? "Отправка..." : "Отправить заявку"}
