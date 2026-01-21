@@ -11,7 +11,6 @@ export function CookieConsent() {
     const saved = localStorage.getItem("cookie-consent");
     if (saved === "true") {
       setConsentGiven(true);
-      loadYandexMetrika();
     } else {
       setIsVisible(true);
     }
@@ -19,66 +18,27 @@ export function CookieConsent() {
 
   const acceptCookies = () => {
     localStorage.setItem("cookie-consent", "true");
+
+    if ((window as any).__METRIKA_CONSENT === false) {
+      delete (window as any).__METRIKA_CONSENT;
+      (window as any).ym(106364517, "init", {
+        ssr: true,
+        webvisor: true,
+        clickmap: true,
+        ecommerce: "dataLayer",
+        accurateTrackBounce: true,
+        trackLinks: true,
+      });
+    }
+
     setConsentGiven(true);
     setIsVisible(false);
-    loadYandexMetrika();
   };
 
   const declineCookies = () => {
     localStorage.setItem("cookie-consent", "false");
     setConsentGiven(false);
     setIsVisible(false);
-  };
-
-  const loadYandexMetrika = () => {
-    if ((window as any).ym) {
-      console.log("✅ Метрика уже работает");
-      return;
-    }
-
-    (function (m: any, e: any, t: any, r: any, i: any, k: any, a: any) {
-      m[i] =
-        m[i] ||
-        function () {
-          (m[i].a = m[i].a || []).push(arguments);
-        };
-      m[i].l = 1 * new Date().getTime();
-      for (var j = 0; j < document.scripts.length; j++) {
-        if (document.scripts[j].src === r) return;
-      }
-      k = e.createElement(t);
-      a = e.getElementsByTagName(t)[0];
-      k.async = true;
-      k.src = r;
-      a.parentNode!.insertBefore(k, a);
-    })(
-      window,
-      document,
-      "script",
-      "https://mc.yandex.ru/metrika/tag.js",
-      "ym",
-      document.createElement("script"),
-      document.getElementsByTagName("script")[0],
-    );
-
-    const script = document.createElement("script");
-    script.async = true;
-    script.src = "https://mc.yandex.ru/metrika/tag.js";
-
-    script.onload = () => {
-      if ((window as any).ym) {
-        (window as any).ym(106364517, "init", {
-          ssr: true,
-          webvisor: true,
-          clickmap: true,
-          ecommerce: "dataLayer",
-          accurateTrackBounce: true,
-          trackLinks: true,
-        });
-      }
-    };
-
-    document.head.appendChild(script);
   };
 
   if (!isVisible || consentGiven) return null;

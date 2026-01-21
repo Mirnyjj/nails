@@ -123,24 +123,48 @@ export default async function RootLayout({
   }
 
   return (
-    <html lang="ru" className="h-full">
+    <html lang="ru">
       <head>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
 
-        <meta
-          name="viewport"
-          content="width=device-width, initial-scale=1, maximum-scale=5"
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+      (function(m,e,t,r,i,k,a){
+        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+      })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=106364517', 'ym');
+      
+      window.__METRIKA_CONSENT = localStorage.getItem('cookie-consent') === 'true';
+      if (!window.__METRIKA_CONSENT) {
+        window.ym = function(){};
+      } else {
+        ym(106364517, 'init', {
+          ssr:true, webvisor:true, clickmap:true, 
+          ecommerce:"dataLayer", accurateTrackBounce:true, trackLinks:true
+        });
+      }
+    `,
+          }}
         />
-        <meta name="theme-color" content="#000000" />
-        <link rel="manifest" href="/manifest.json" />
       </head>
-
       <body
         className={`${inter.variable} ${inter.className} h-full antialiased font-sans`}
       >
+        <noscript>
+          <div>
+            <img
+              src="https://mc.yandex.ru/watch/106364517"
+              style={{ position: "absolute", left: "-9999px" }}
+              alt=""
+            />
+          </div>
+        </noscript>
         <div
           className="fixed inset-0 z-[-2] bg-no-repeat"
           style={{
@@ -159,77 +183,50 @@ export default async function RootLayout({
 
         <div className="relative z-0 min-h-screen">
           <ErrorBoundary>{children}</ErrorBoundary>
+          <CookieConsent />
         </div>
-
-        <CookieConsent />
       </body>
     </html>
   );
 }
+// <html lang="ru" className="h-full">
+//   <head>
+//     <script
+//       type="application/ld+json"
+//       dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+//     />
 
-//  <html lang="ru" className="h-full">
-//       <head>
-//         <script
-//           type="application/ld+json"
-//           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-//         />
+//     <meta
+//       name="viewport"
+//       content="width=device-width, initial-scale=1, maximum-scale=5"
+//     />
+//     <meta name="theme-color" content="#000000" />
+//     <link rel="manifest" href="/manifest.json" />
+//   </head>
 
-//         {process.env.NEXT_PUBLIC_YM_ID && (
-//           <script
-//             dangerouslySetInnerHTML={{
-//               __html: `
-//                 (function(m,e,t,r,i,k,a){
-//                   m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-//                   m[i].l=1*new Date();
-//                   k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
-//                 })(window, document,'script','https://mc.yandex.ru/metrika/tag.js','ym');
-//                 ym(${process.env.NEXT_PUBLIC_YM_ID},'init',{ssr:true,webvisor:true,clickmap:true});
-//               `,
-//             }}
-//           />
-//         )}
+//   <body
+//     className={`${inter.variable} ${inter.className} h-full antialiased font-sans`}
+//   >
+//     <div
+//       className="fixed inset-0 z-[-2] bg-no-repeat"
+//       style={{
+//         backgroundImage: settings?.background_gif_url
+//           ? `url(${settings.background_gif_url})`
+//           : "none",
+//         backgroundSize: "cover",
+//         backgroundPosition: "center",
+//         backgroundRepeat: "no-repeat",
+//         backgroundAttachment: "fixed",
+//         backgroundColor: "#111",
+//       }}
+//     />
 
-//         <meta
-//           name="viewport"
-//           content="width=device-width, initial-scale=1, maximum-scale=5"
-//         />
-//         <meta name="theme-color" content="#000000" />
-//         <link rel="manifest" href="/manifest.json" />
-//       </head>
+//     <div className="fixed inset-0 z-[-1] bg-black/50" />
 
-//       <body
-//         className={`${inter.variable} ${inter.className} h-full antialiased font-sans`}
-//       >
-//         <div
-//           className="fixed inset-0 z-[-2] bg-no-repeat"
-//           style={{
-//             backgroundImage: settings?.background_gif_url
-//               ? `url(${settings.background_gif_url})`
-//               : "none",
-//             backgroundSize: "cover",
-//             backgroundPosition: "center",
-//             backgroundRepeat: "no-repeat",
-//             backgroundAttachment: "fixed",
-//             backgroundColor: "#111",
-//           }}
-//         />
+//     <div className="relative z-0 min-h-screen">
+//       <ErrorBoundary>{children}</ErrorBoundary>
+//     </div>
 
-//         <div className="fixed inset-0 z-[-1] bg-black/50" />
-
-//         <div className="relative z-0 min-h-screen">
-//           <ErrorBoundary>{children}</ErrorBoundary>
-//         </div>
-
-//         {process.env.NEXT_PUBLIC_YM_ID && (
-//           <noscript>
-//             <div>
-//               <img
-//                 src={`https://mc.yandex.ru/watch/${process.env.NEXT_PUBLIC_YM_ID}`}
-//                 style={{ position: "absolute", left: "-9999px" }}
-//                 alt=""
-//               />
-//             </div>
-//           </noscript>
-//         )}
-//       </body>
-//     </html>
+//     <CookieConsent />
+//   </body>
+// </html>
