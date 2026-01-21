@@ -31,38 +31,53 @@ export function CookieConsent() {
   };
 
   const loadYandexMetrika = () => {
-    console.log("🔥 Запуск Метрики. ID:", 106364517);
-
-    if (window.ym) {
+    if ((window as any).ym) {
       console.log("✅ Метрика уже работает");
       return;
     }
 
-    const ymQueue: any[] = [];
-    (window as any).ym = function (...args: any[]) {
-      ymQueue.push(args);
-    };
-    (window as any).ym.q = ymQueue;
-    (window as any).ym.l = window.performance.now();
+    (function (m: any, e: any, t: any, r: any, i: any, k: any, a: any) {
+      m[i] =
+        m[i] ||
+        function () {
+          (m[i].a = m[i].a || []).push(arguments);
+        };
+      m[i].l = 1 * new Date().getTime();
+      for (var j = 0; j < document.scripts.length; j++) {
+        if (document.scripts[j].src === r) return;
+      }
+      k = e.createElement(t);
+      a = e.getElementsByTagName(t)[0];
+      k.async = true;
+      k.src = r;
+      a.parentNode!.insertBefore(k, a);
+    })(
+      window,
+      document,
+      "script",
+      "https://mc.yandex.ru/metrika/tag.js",
+      "ym",
+      document.createElement("script"),
+      document.getElementsByTagName("script")[0],
+    );
 
     const script = document.createElement("script");
     script.async = true;
     script.src = "https://mc.yandex.ru/metrika/tag.js";
 
     script.onload = () => {
-      console.log("✅ tag.js загружен");
-      if (window.ym) {
-        window.ym(106364517, "init", {
-          clickmap: true,
-          trackLinks: true,
-          accurateTrackBounce: true,
+      if ((window as any).ym) {
+        (window as any).ym(106364517, "init", {
+          ssr: true,
           webvisor: true,
+          clickmap: true,
+          ecommerce: "dataLayer",
+          accurateTrackBounce: true,
+          trackLinks: true,
         });
-        console.log("✅ Метрика инициализирована!");
       }
     };
 
-    script.onerror = () => console.error("❌ Ошибка загрузки tag.js");
     document.head.appendChild(script);
   };
 
