@@ -35,7 +35,7 @@ export default function PrivacyPage() {
             Политика конфиденциальности
           </h1>
           <p className="text-xl text-white/70 max-w-2xl mx-auto">
-            ИП Авдеева Анастасия Алексеевна, мастера маникюра
+            Авдеева Анастасия Евгеньевна, мастера маникюра
           </p>
         </motion.div>
 
@@ -53,8 +53,8 @@ export default function PrivacyPage() {
               <p className="text-white/80 leading-relaxed">
                 1.1. Настоящая Политика конфиденциальности персональных данных
                 (далее — Политика) действует в отношении всей информации,
-                которую сайт <strong>avdeeevanails.ru</strong> (далее — Сайт)
-                расположенный на доменном имени avdeeevanails.ru (а также его
+                которую сайт <strong>https://nails-avdeeva.vercel.app</strong> (далее — Сайт)
+                расположенный на доменном имени nails-avdeeva.vercel.app (а также его
                 субдоменах), может получить о Пользователе во время
                 использования сайта.
               </p>
@@ -128,7 +128,7 @@ export default function PrivacyPage() {
               </p>
               <p className="text-white/80 leading-relaxed">
                 4.2. Заявки из форм отправляются напрямую в Telegram-бот
-                Авдеевой Анастасии Алексеевны для оперативной обработки.
+                Авдеевой Анастасии Евгеньевны для оперативной обработки.
               </p>
               <p className="text-white/80 leading-relaxed">
                 4.3. Cookies Яндекс.Метрика обрабатываются в соответствии с{" "}
@@ -188,7 +188,7 @@ export default function PrivacyPage() {
               <div className="grid md:grid-cols-2 gap-8 text-white/80">
                 <div>
                   <p>
-                    <strong>Самозанятый Авдеева Анастасия Алексеевна</strong>
+                    <strong>Самозанятый Авдеева Анастасия Евгеньевна</strong>
                   </p>
                   <p>ИНН: 631405677493</p>
                   <p>
