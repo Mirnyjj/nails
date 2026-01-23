@@ -31,7 +31,7 @@ export default function PrivacyPage() {
           transition={{ duration: 0.6, delay: 0.1 }}
           className="text-center mb-20"
         >
-          <h1 className="text-5xl md:text-7xl font-black mb-6 bg-gradient-to-r from-purple-400 via-pink-400 to-orange-400 bg-clip-text text-transparent">
+          <h1 className="text-3xl md:text-7xl font-black mb-6 bg-gradient-to-r from-purple-400 via-pink-400 to-orange-400 bg-clip-text text-transparent">
             Политика конфиденциальности
           </h1>
           <p className="text-xl text-white/70 max-w-2xl mx-auto">
@@ -47,7 +47,7 @@ export default function PrivacyPage() {
         >
           <div className="space-y-6">
             <div className="space-y-4">
-              <h2 className="text-3xl font-bold text-white mb-4">
+              <h2 className="text-2xl font-bold text-white mb-4">
                 1. Общие положения
               </h2>
               <p className="text-white/80 leading-relaxed">
@@ -66,7 +66,7 @@ export default function PrivacyPage() {
             </div>
 
             <div className="space-y-4">
-              <h2 className="text-3xl font-bold text-white mb-4">
+              <h2 className="text-2xl font-bold text-white mb-4">
                 2. Какие данные собираются
               </h2>
               <div className="grid md:grid-cols-2 gap-6">
@@ -96,7 +96,7 @@ export default function PrivacyPage() {
             </div>
 
             <div className="space-y-4">
-              <h2 className="text-3xl font-bold text-white mb-4">
+              <h2 className="text-2xl font-bold text-white mb-4">
                 3. Цели сбора данных
               </h2>
               <p className="text-white/80 leading-relaxed">
@@ -119,7 +119,7 @@ export default function PrivacyPage() {
             </div>
 
             <div className="space-y-4">
-              <h2 className="text-3xl font-bold text-white mb-4">
+              <h2 className="text-2xl font-bold text-white mb-4">
                 4. Передача данных третьим лицам
               </h2>
               <p className="text-white/80 leading-relaxed">
@@ -145,7 +145,7 @@ export default function PrivacyPage() {
             </div>
 
             <div className="space-y-4">
-              <h2 className="text-3xl font-bold text-white mb-4">
+              <h2 className="text-2xl font-bold text-white mb-4">
                 5. Хранение и защита данных
               </h2>
               <ul className="space-y-3 text-white/80">
@@ -161,7 +161,7 @@ export default function PrivacyPage() {
             </div>
 
             <div className="space-y-4">
-              <h2 className="text-3xl font-bold text-white mb-4">
+              <h2 className="text-2xl font-bold text-white mb-4">
                 6. Права Пользователя
               </h2>
               <p className="text-white/80 leading-relaxed">
@@ -172,7 +172,7 @@ export default function PrivacyPage() {
             </div>
 
             <div className="space-y-4">
-              <h2 className="text-3xl font-bold text-white mb-4">
+              <h2 className="text-2xl font-bold text-white mb-4">
                 7. Управление cookies
               </h2>
               <p className="text-white/80 leading-relaxed">
@@ -182,7 +182,7 @@ export default function PrivacyPage() {
             </div>
 
             <div className="space-y-4 pt-8 border-t border-white/10">
-              <h2 className="text-3xl font-bold text-white mb-4">
+              <h2 className="text-2xl font-bold text-white mb-4">
                 8. Контакты и реквизиты
               </h2>
               <div className="grid md:grid-cols-2 gap-8 text-white/80">

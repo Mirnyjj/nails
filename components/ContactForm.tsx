@@ -359,7 +359,7 @@ export function ContactForm({ services }: ContactFormProps) {
                       />
                       <span className="text-sm text-white/80 leading-relaxed group-hover:text-white transition-colors">
                         Согласен(-на) на обработку персональных данных и
-                        политику конфиденциальности.
+                        политику конфиденциальности. <br />
                         <a
                           href="/privacy"
                           target="_blank"
