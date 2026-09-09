@@ -54,7 +54,7 @@ export function LocationMap() {
           <div className="relative bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-3xl p-3 sm:p-6 border border-white/20 shadow-[0_0_50px_rgba(236,72,153,0.2)] overflow-hidden">
             <div className="relative w-full h-[70vh] sm:h-[60vh] lg:aspect-video rounded-2xl overflow-hidden">
               <iframe
-                src="https://yandex.ru/map-widget/v1/?um=constructor%3A71a83378fa628a8a543bc675771dbcb075520157480b2e2531e5b0c5e5e4afda&source=constructor"
+                src="https://yandex.ru/map-widget/v1/?um=constructor%3A71a83378fa628a8a543bc675771dbcb075520157480b2e2531e5b0c5e5e4afda&amp;source=constructor"
                 className="absolute top-0 left-0 w-full h-full border-0"
                 allowFullScreen
                 title="Карта расположения студии"
